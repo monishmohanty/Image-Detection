@@ -1,17 +1,3 @@
-# name: workflow
-
-# on:
-#   push:
-#     branches:
-#       - main
-#     paths-ignore:
-#       - 'README.md'
-
-# permissions:
-#   id-token: write
-#   contents: read
-
-
 name: workflow
 
 on:
@@ -24,7 +10,6 @@ on:
 permissions:
   id-token: write
   contents: read
-
 
 jobs:
   integration:
@@ -103,9 +88,9 @@ jobs:
          docker pull ${{ secrets.AWS_ECR_LOGIN_URL }}/${{ secrets.ECR_REPOSITORY_NAME }}:latest
 
          
-      - name: Stop and remove  container if running
-        run: |
-         docker ps -q --filter "name=image" | grep -q . && docker stop image && docker rm -fv image
+      # - name: Stop and remove  container if running
+      #   run: |
+      #    docker ps -q --filter "name=image" | grep -q . && docker stop image && docker rm -fv image
        
       - name: Run Docker Image to serve users
         run: |
